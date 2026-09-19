@@ -7,6 +7,10 @@ const assets = new Map([
   ["/index.html", ["index.html", "text/html"]],
   ["/styles.css", ["styles.css", "text/css"]],
   ["/favicon.svg", ["favicon.svg", "image/svg+xml"]],
+  [
+    "/assets/fonts/Montserrat-Variable.ttf",
+    ["assets/fonts/Montserrat-Variable.ttf", "font/ttf"],
+  ],
   ...["app", "main", "planner", "storage", "demo"].map((name) => [
     `/src/${name}.js`,
     [`src/${name}.js`, "text/javascript"],

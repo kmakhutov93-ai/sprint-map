@@ -280,7 +280,7 @@ export function mountApp(
     const identity = el(doc, "div", "identity");
     append(
       identity,
-      el(doc, "div", "brand", "SPRINT / MAP"),
+      el(doc, "div", "brand", "Sprint Map"),
       el(doc, "h1", "", project.name),
       el(
         doc,

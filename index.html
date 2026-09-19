@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'"
     />
-    <meta name="theme-color" content="#f3f5fa" />
+    <meta name="theme-color" content="#edf3fa" />
     <meta
       name="description"
       content="Локальный план команды с зависимостями и сценариями."
     />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="./assets/fonts/Montserrat-Variable.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
     <link rel="stylesheet" href="./styles.css" />
     <title>Sprint Map — план команды</title>
   </head>

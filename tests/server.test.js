@@ -14,12 +14,17 @@ test("server exposes public assets while rejecting private paths and write reque
   assert.match(page.headers.get("content-type"), /text\/html/);
   const html = await page.text();
   assert.match(html, /Content-Security-Policy/);
+  assert.match(html, /font-src 'self'/);
   for (const [, path] of html.matchAll(/(?:src|href)="(\.\/[^"\s]+)"/g)) {
     assert.equal((await fetch(new URL(path, url))).status, 200, path);
   }
   const script = await fetch(`${url}/src/planner.js`);
   assert.equal(script.status, 200);
   assert.match(script.headers.get("content-type"), /javascript/);
+  const font = await fetch(`${url}/assets/fonts/Montserrat-Variable.ttf`);
+  assert.equal(font.status, 200);
+  assert.match(font.headers.get("content-type"), /font\/ttf/);
+  assert.equal(new DataView(await font.arrayBuffer()).getUint32(0), 0x00010000);
   for (const path of [
     "/.git/config",
     "/package.json",
