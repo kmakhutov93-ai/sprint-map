@@ -1,0 +1,9 @@
+node_modules/
+.local/
+.superpowers/
+coverage/
+.env
+.env.*
+*.log
+Thumbs.db
+.DS_Store
