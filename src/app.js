@@ -161,6 +161,10 @@ export function mountApp(
       const checked = validateProject(next);
       const updated = { ...workspace, [view]: checked };
       workspace = updated;
+      if (!checked.people.some((person) => person.id === editingPerson))
+        editingPerson = null;
+      if (!checked.tasks.some((task) => task.id === editingTask))
+        editingTask = null;
       revision++;
       onSuccess();
       if (!startupError) {

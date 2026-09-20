@@ -188,3 +188,31 @@ test("explicit new plan can replace a corrupt save", () => {
   );
   assert.doesNotMatch(document.body.textContent, /Сохранение отключено/);
 });
+
+test("deleting the participant being edited still allows adding a new one", () => {
+  const document = setup();
+  click(document, '[data-action="new-project"]');
+  document.querySelector('[name="person-name"]').value = "Ира";
+  click(document, '[data-action="save-person"]');
+  click(document, '[data-action="edit-person"]');
+  click(document, '[data-action="delete-person"]');
+  document.querySelector('[name="person-name"]').value = "Алия";
+  click(document, '[data-action="save-person"]');
+  assert.equal(document.querySelectorAll(".person-row").length, 1);
+  assert.match(document.querySelector(".team-list").textContent, /Алия/);
+});
+
+test("deleting the task being edited still allows adding a new one", () => {
+  const document = setup();
+  const lastRow = document.querySelectorAll(".task-row")[7];
+  click(lastRow, '[data-action="edit-task"]');
+  const editedRow = document.querySelectorAll(".task-row")[7];
+  click(editedRow, '[data-action="delete-task"]');
+  document.querySelector('[name="task-title"]').value = "Новая задача";
+  click(document, '[data-action="save-task"]');
+  assert.equal(document.querySelectorAll(".task-row").length, 8);
+  assert.match(
+    document.querySelector(".task-list").textContent,
+    /Новая задача/,
+  );
+});
